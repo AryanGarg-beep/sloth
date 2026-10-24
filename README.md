@@ -199,51 +199,6 @@ Measured on a laptop with an Intel Core Ultra 7 258V and 32 GB of RAM, using `ge
 
 "Sorted automatically" isn't the same as "sorted correctly". The mistakes found on review were mostly about *what counts as a subject*: hackathon material filed as a course, and two networking subjects that should be one. That's what the new-subject review step and *Fix* are for.
 
-## Development
-
-```sh
-python -m unittest                    # 48 tests, about 0.1 s; a fake model, no Ollama needed
-python scripts/make_test_docs.py      # regenerate test_docs/ and tests/expected.json
-python scripts/eval_classify.py       # score the real model on test_docs/ (--fresh for timing)
-python scripts/plan_stats.py PLAN     # summarise a saved plan as numbers only
-```
-
-The tests cover:
-- the unit regexes
-- name-clash naming, and never overwriting
-- a full plan → apply → undo loop that checks the folder's SHA-256 manifest is identical afterwards
-- undo refusing after a file is edited, or when its old path is taken
-- skipping files that changed after planning
-- the real-folder latch
-- the UI's service layer
-
-Layout:
-
-```
-sloth/
-  cli.py        commands
-  web.py        the local web UI server       static/index.html  the page
-  service.py    what the UI needs: plan as data, corrections, apply/undo
-  config.py     config, state paths, real-folder latch
-  extract.py    text from PDF/PPTX/DOCX/images/…, via poppler, tesseract, zip+XML, soffice
-  classify.py   prompt, JSON schema, and the rules that turn Gemma's answer into a decision
-  units.py      unit numbers from filenames and text
-  registry.py   subjects, aliases, "did you mean"
-  coldstart.py  `sloth init`
-  scan.py       which files to look at
-  plan.py       make/save/load plans
-  apply.py      apply and undo
-  moves.py      no-clobber moves and the journal
-  ollama.py     a loopback-only Ollama client
-```
-
-## Limitations
-
-- **Speed.** Planning is slow on the first run: about 6–9 s a file on this laptop. Later runs use the cache.
-- **Language.** sloth is English-first. OCR uses tesseract's English data, and the prompt is in English.
-- **What it reads.** Only the first few pages are read, so a file that only says what it is on page 10 can end up in "Needs a look".
-- **Watching.** There's no background watch mode yet; you run a plan when you want one.
-
 ## Credits and licences
 
 sloth is MIT licensed. See [LICENSE](LICENSE).
@@ -254,4 +209,3 @@ It stands on:
 - [poppler](https://poppler.freedesktop.org) (GPL, run as a separate program, not linked)
 - [Tesseract](https://github.com/tesseract-ocr/tesseract) (Apache-2.0)
 - [LibreOffice](https://www.libreoffice.org) (MPL-2.0)
-- [ImageMagick](https://imagemagick.org), used only to generate the test documents
