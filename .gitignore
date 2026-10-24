@@ -5,20 +5,29 @@ __pycache__/
 build/
 dist/
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
 # Virtual envs
 venv/
 .venv/
 
-# sloth state, caches, logs (live in ~/.local/share/sloth, but just in case)
+# sloth state (lives in ~/.local/share/sloth, but just in case)
 *.sqlite
 *.sqlite-journal
 *.jsonl
 *.log
 plans/
+.sloth/
+*.toml.tmp
 
-# Anything that might contain real (non-synthetic) documents
-test_docs/real/
-sloth_trial/
-sloth_sandbox/
-post-assets/raw/
+# Office lock files
+.~lock.*#
+~$*
+
+# Editors and OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store

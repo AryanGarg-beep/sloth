@@ -7,7 +7,9 @@ SLOTH_HOME, which the tests use so they never see the real ones.
 
 from __future__ import annotations
 
+import json
 import os
+import re
 import tomllib
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -129,3 +131,19 @@ def check_allowed(cfg: Config, path: Path) -> None:
             f"{path} is inside your real Downloads/Documents. "
             "Set allow_real_folders = true in the config once you're ready."
         )
+
+
+def save_folders(watched: list[Path], target_root: Path) -> None:
+    """Rewrite the watched and target_root lines of the config file, keeping everything else."""
+    path = ensure_config()
+    text = path.read_text()
+    q = lambda p: json.dumps(str(p), ensure_ascii=False)  # noqa: E731 - a JSON string is a valid TOML string
+    new = re.sub(r"(?m)^watched\s*=\s*\[[^\]]*\]",
+                 lambda m: "watched = [" + ", ".join(q(p) for p in watched) + "]", text, count=1)
+    new = re.sub(r'(?m)^target_root\s*=\s*"[^"\n]*"', lambda m: "target_root = " + q(target_root), new, count=1)
+    data = tomllib.loads(new)
+    if [_expand(p) for p in data.get("watched", [])] != list(watched) or _expand(data["target_root"]) != target_root:
+        raise ValueError(f"couldn't update {path} safely; edit watched/target_root there by hand")
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_text(new)
+    os.replace(tmp, path)

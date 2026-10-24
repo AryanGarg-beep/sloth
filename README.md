@@ -13,8 +13,6 @@ sloth reads what's *inside* your notes, slides and scanned handouts. It asks a l
 - **Nothing moves until you say so.** Every run is a dry-run plan first.
 - **Everything can be undone.** Every batch of moves is logged, and `sloth undo` puts the files back exactly where they were.
 
-![The sloth web UI showing a plan: files grouped by subject and unit](post-assets/screenshots/ui-1-plan.png)
-
 > Built for the DEV Hacktoberfest "Slow and Steady" challenge.
 
 ---
@@ -64,14 +62,6 @@ sloth ui            # opens http://127.0.0.1:8765
 4. **Check and fix.** *Why?* shows the text Gemma saw, its exact answer and the rule sloth applied. *Fix* lets you pick a different subject or unit, send a file to "Needs a look", or leave it alone.
 5. **Review & apply.** A confirmation lists every destination folder before anything moves.
 6. **Undo** any batch from *History*.
-
-| | |
-|---|---|
-| ![Why? dialog](post-assets/screenshots/ui-2-why.png) | ![Fixing one file](post-assets/screenshots/ui-3-fix.png) |
-| ![Apply confirmation](post-assets/screenshots/ui-4-apply.png) | ![Undo](post-assets/screenshots/ui-6-undo.png) |
-| ![Choosing folders](post-assets/screenshots/ui-9-folders.png) | ![Folder picker](post-assets/screenshots/ui-10-picker.png) |
-
-The screenshots use the synthetic test files in `test_docs/`, not real data.
 
 ### The command line
 
@@ -129,7 +119,7 @@ These rules held from the first commit:
 - **Re-checked at apply time.** If a file's size or modification time changed since planning, its SHA-256 is checked again. A file that changed or vanished is skipped.
 - **Journal.** Every move is written to `journal.jsonl` before it happens ("pending") and after ("done"). If a batch is interrupted, undo reverses the finished moves and names the one that was in flight, so you can check it.
 - **Careful undo.** Undo refuses to move a file back if it was edited after the move, or if something new now sits at its old path. It only removes empty folders that the same batch created.
-- **Real-folder latch.** Until you set `allow_real_folders = true`, sloth refuses to read from or write to `~/Downloads` and `~/Documents`. Useful while you try it on a copy.
+- **Real-folder latch.** Until you set `allow_real_folders = true`, sloth refuses to read from or write to `~/Downloads` and `~/Documents`.
 - **Local only.** The Ollama client refuses any host that isn't loopback. The web UI:
   - binds to `127.0.0.1` only
   - requires a per-run secret token on every change
@@ -164,40 +154,6 @@ State is kept in `~/.local/share/sloth/`:
 - `cache.sqlite`
 - `journal.jsonl`
 - `plans/`
-
-`SLOTH_CONFIG` and `SLOTH_HOME` point sloth somewhere else, which is handy for a trial run on a copy:
-
-```sh
-cp -a --reflink=auto ~/Downloads ~/sloth_trial/Downloads
-SLOTH_CONFIG=~/sloth_trial/config.toml SLOTH_HOME=~/sloth_trial/state sloth ui
-```
-
-## Numbers
-
-Measured on a laptop with an Intel Core Ultra 7 258V and 32 GB of RAM, using `gemma4:e4b-it-qat` on the CPU/iGPU through Ollama.
-
-**Synthetic test set.** `test_docs/` has 26 made-up files: notes, slides, a scanned handout, a phone photo of a whiteboard, misleading filenames, receipts, a train ticket, a meme and an AppImage.
-
-| | |
-|---|---|
-| correct subject + unit + decision | **26 / 26** |
-| …with a subject list `sloth init` generated on its own | 26 / 26 |
-| time per file (uncached) | ~6.2 s |
-
-**A copy of a real Downloads folder.** It had 101 files at the top level.
-
-| | |
-|---|---|
-| sorted automatically | 56 (92% of the files Gemma judged to be college material) |
-| proposed as new subjects | 4 |
-| sent to "Needs a look" | 1 |
-| left alone: not college material | 10 |
-| left alone: types sloth doesn't read (archives, installers, …) | 30 |
-| time per file, text PDFs | ~8.5 s |
-| time per file, scans (OCR ≈ 1.3 s of it) | ~9.4 s |
-| `sloth init` (propose a subject list) | 57 s |
-
-"Sorted automatically" isn't the same as "sorted correctly". The mistakes found on review were mostly about *what counts as a subject*: hackathon material filed as a course, and two networking subjects that should be one. That's what the new-subject review step and *Fix* are for.
 
 ## Credits and licences
 

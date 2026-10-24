@@ -19,3 +19,6 @@ sloth = "sloth.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["sloth*"]
+
+[tool.setuptools.package-data]
+sloth = ["static/*"]

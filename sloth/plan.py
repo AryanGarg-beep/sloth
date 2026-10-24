@@ -56,7 +56,8 @@ def make_plan(folders: list[Path], cfg: config.Config, registry: Registry, *,
                 "src": str(path), "name": path.name, "sha256": ex["sha256"], "size": st.st_size,
                 "mtime": st.st_mtime, "extract_method": ex["method"], "extract_s": ex["seconds"],
                 **{k: got[k] for k in ("status", "subject", "suggestion", "new_subject", "unit", "unit_source",
-                                       "unit_note", "doc_type", "confidence", "reason", "model_s", "cached")},
+                                       "unit_note", "doc_type", "confidence", "reason", "model_s", "cached",
+                                       "raw")},
             }
             item["dest_dir"] = dest_dir(item, registry)
             items.append(item)

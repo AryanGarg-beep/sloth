@@ -247,13 +247,26 @@ def extract(path: Path | str, *, max_pages: int = 3, max_slides: int = 8,
     return result
 
 
+def _opts(cfg) -> dict:
+    return {"max_pages": cfg.max_pages, "max_slides": cfg.max_slides, "max_chars": cfg.max_chars}
+
+
+def _key(sha: str, opts: dict) -> str:
+    return f"{sha}:v{EXTRACT_VERSION}:" + ":".join(f"{k}={v}" for k, v in opts.items())
+
+
+def cached_extraction(sha: str, cfg, cache) -> dict | None:
+    """A previous extraction of a file with this content, if any (the file may have moved since)."""
+    return cache.get("extract", _key(sha, _opts(cfg)))
+
+
 def extract_cached(path: Path, cfg, cache) -> dict:
     """extract() with results cached by file content. Adds "sha256" and "cached"."""
     from .cache import sha256
 
     sha = sha256(path)
-    opts = {"max_pages": cfg.max_pages, "max_slides": cfg.max_slides, "max_chars": cfg.max_chars}
-    key = f"{sha}:v{EXTRACT_VERSION}:" + ":".join(f"{k}={v}" for k, v in opts.items())
+    opts = _opts(cfg)
+    key = _key(sha, opts)
     result = cache.get("extract", key)
     if result is not None:
         return {**result, "sha256": sha, "cached": True}

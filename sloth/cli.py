@@ -319,6 +319,14 @@ def cmd_init(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_ui(args: argparse.Namespace) -> int:
+    """Open the local web UI."""
+    from .web import serve
+
+    serve(config.load(), port=args.port, open_browser=not args.no_browser)
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="sloth",
@@ -379,6 +387,11 @@ def build_parser() -> argparse.ArgumentParser:
     q = ss.add_parser("merge", help="merge one subject into another")
     q.add_argument("name")
     q.add_argument("into")
+
+    p = sub.add_parser("ui", help="open the local web UI (http://127.0.0.1 only)")
+    p.add_argument("--port", type=int, default=8765)
+    p.add_argument("--no-browser", action="store_true", help="don't open a browser tab")
+    p.set_defaults(func=cmd_ui)
 
     p = sub.add_parser("explain", help="show what sloth read from a file and why it decided")
     p.add_argument("file")
