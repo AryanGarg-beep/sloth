@@ -1,0 +1,184 @@
+{
+  "DM Unit-2 Logic.pdf": {
+    "is_college": true,
+    "subject": "Discrete Maths",
+    "unit": 2,
+    "doc_type": "notes",
+    "note": "hyphenated 'Unit-2'"
+  },
+  "DM syllabus.pdf": {
+    "is_college": true,
+    "subject": "Discrete Maths",
+    "unit": null,
+    "doc_type": "syllabus",
+    "note": "syllabus lists every unit, so unit should be null"
+  },
+  "FLA_Unit2_RegularExpressions.pdf": {
+    "is_college": true,
+    "subject": "FLA",
+    "unit": 2,
+    "doc_type": "notes",
+    "note": "unit in CamelCase filename"
+  },
+  "IMG_20261012_101533.jpg": {
+    "is_college": true,
+    "subject": "Discrete Maths",
+    "unit": 4,
+    "doc_type": "notes",
+    "note": "phone photo of a handout"
+  },
+  "TOC unit IV.pdf": {
+    "is_college": true,
+    "subject": "FLA",
+    "unit": 4,
+    "doc_type": "notes",
+    "note": "alias 'TOC' + roman numeral unit"
+  },
+  "ch1 relations practice.docx": {
+    "is_college": true,
+    "subject": "Discrete Maths",
+    "unit": 1,
+    "doc_type": "assignment",
+    "note": "'ch1' as unit, no subject in filename"
+  },
+  "discrete mod 3 combinatorics.pdf": {
+    "is_college": true,
+    "subject": "Discrete Maths",
+    "unit": 3,
+    "doc_type": "notes",
+    "note": "'mod 3' as unit"
+  },
+  "dm unit 3 notes.doc": {
+    "is_college": true,
+    "subject": "Discrete Maths",
+    "unit": 3,
+    "doc_type": "notes",
+    "note": "legacy .doc (needs LibreOffice)"
+  },
+  "document(3).pdf": {
+    "is_college": true,
+    "subject": "Discrete Maths",
+    "unit": null,
+    "doc_type": "question_paper",
+    "note": "covers several units, so unit should be null"
+  },
+  "e-ticket_PNR4512783901.pdf": {
+    "is_college": false,
+    "subject": null,
+    "unit": null,
+    "doc_type": null,
+    "note": "train ticket"
+  },
+  "editor-1.4.2-x86_64.AppImage": {
+    "is_college": false,
+    "subject": null,
+    "unit": null,
+    "doc_type": null,
+    "note": "binary installer: can't be read, must be left alone"
+  },
+  "fla assignment 3.docx": {
+    "is_college": true,
+    "subject": "FLA",
+    "unit": 3,
+    "doc_type": "assignment",
+    "note": "'assignment 3' must not be read as unit 3; unit comes from content"
+  },
+  "fla unit 1 slides.pptx": {
+    "is_college": true,
+    "subject": "FLA",
+    "unit": 1,
+    "doc_type": "slides",
+    "note": "pptx with speaker notes"
+  },
+  "fla unit 1.pdf": {
+    "is_college": true,
+    "subject": "FLA",
+    "unit": 1,
+    "doc_type": "notes",
+    "note": "subject and unit in filename"
+  },
+  "fla unit 5.ppt": {
+    "is_college": true,
+    "subject": "FLA",
+    "unit": 5,
+    "doc_type": "slides",
+    "note": "legacy .ppt (needs LibreOffice)"
+  },
+  "flat_unit_3_rent_receipt.pdf": {
+    "is_college": false,
+    "subject": null,
+    "unit": null,
+    "doc_type": null,
+    "note": "decoy: 'unit 3' and 'fla(t)' in the name, but it's a rent receipt"
+  },
+  "maths unit 1.pdf": {
+    "is_college": true,
+    "subject": "Discrete Maths",
+    "unit": 1,
+    "doc_type": "notes",
+    "note": "'maths' as subject alias"
+  },
+  "maths unit 2.pptx": {
+    "is_college": true,
+    "subject": "Discrete Maths",
+    "unit": 2,
+    "doc_type": "slides",
+    "note": "spec example name"
+  },
+  "meme.jpg": {
+    "is_college": false,
+    "subject": null,
+    "unit": null,
+    "doc_type": null,
+    "note": "meme with text"
+  },
+  "notes_final(1).pdf": {
+    "is_college": true,
+    "subject": "FLA",
+    "unit": 5,
+    "doc_type": "notes",
+    "note": "generic filename, 5 pages (only 3 should be read)"
+  },
+  "os unit 1.pdf": {
+    "is_college": true,
+    "subject": "Operating Systems",
+    "unit": 1,
+    "doc_type": "notes",
+    "note": "subject not in registry: should be proposed as a new subject"
+  },
+  "receipt_2026-10-03.pdf": {
+    "is_college": false,
+    "subject": null,
+    "unit": null,
+    "doc_type": null,
+    "note": "grocery receipt"
+  },
+  "scan_0042.pdf": {
+    "is_college": true,
+    "subject": "FLA",
+    "unit": 2,
+    "doc_type": "notes",
+    "note": "image-only scanned PDF: needs OCR"
+  },
+  "unit 2 (1).pdf": {
+    "is_college": true,
+    "subject": "FLA",
+    "unit": 4,
+    "doc_type": "assignment",
+    "note": "filename says unit 2, content says unit 4: content should win"
+  },
+  "unit 3.pdf": {
+    "is_college": true,
+    "subject": "FLA",
+    "unit": 3,
+    "doc_type": "notes",
+    "note": "no subject in filename; unit only from filename"
+  },
+  "unit 4.pdf": {
+    "is_college": true,
+    "subject": "Discrete Maths",
+    "unit": 4,
+    "doc_type": "notes",
+    "note": "no subject in filename, no unit in content"
+  }
+}

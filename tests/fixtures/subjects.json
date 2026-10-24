@@ -1,0 +1,18 @@
+{
+  "subjects": [
+    {
+      "name": "FLA",
+      "aliases": ["Formal Languages and Automata"],
+      "description": "Formal Languages and Automata Theory",
+      "keywords": ["DFA", "NFA", "regular expressions", "pumping lemma", "context-free grammars", "pushdown automata", "Turing machines"],
+      "folder": "FLA"
+    },
+    {
+      "name": "Discrete Maths",
+      "aliases": ["DM", "Discrete Mathematics", "Maths"],
+      "description": "Discrete Mathematics",
+      "keywords": ["sets", "relations", "functions", "logic", "combinatorics", "graph theory"],
+      "folder": "Discrete Maths"
+    }
+  ]
+}
